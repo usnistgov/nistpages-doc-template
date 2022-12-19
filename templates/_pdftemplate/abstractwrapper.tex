@@ -8,6 +8,11 @@
 
 \clearpage
 
+%: if config.latex_engine == 'lualatex'
+\tagstructbegin{tag=Sect}
+%: endif
+
+
 \pagestyle{body}
 
 \pagenumbering{roman}
@@ -23,6 +28,11 @@
 \titleformat{\paragraph}{\normalsize\bfseries\sffamily}{}{0em}{}
 
 \VAR{body}
+
+%: if config.latex_engine == 'lualatex'
+\tagstructend % end abstract/frontmatter section
+%: endif
+
 
 \setcounter{secnumdepth}{4}
 \hypersetup{bookmarksdepth=4}

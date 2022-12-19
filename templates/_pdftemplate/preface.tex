@@ -7,6 +7,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
+%: if config.latex_engine == 'lualatex'
+\tagstructbegin{tag=Sect}
+%: endif
+
 
 \pagestyle{body}
 
@@ -21,5 +25,10 @@
 \titleformat{\subsubsection}{\normalsize\bfseries\sffamily}{}{0em}{}
 \titleformat{\paragraph}{\normalsize\bfseries\sffamily}{}{0em}{}
 
-\VAR{body}
 
+  \VAR{body}
+
+
+%: if config.latex_engine == 'lualatex'
+\tagstructend % end preface
+%: endif

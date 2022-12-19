@@ -3,6 +3,43 @@
 % 	List of Tables & Figures required if more than 5 tables/figures
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%: if config.latex_engine == 'lualatex'
+
+\clearpage
+
+\tagstructbegin{tag=Sect}
+
+\begin{center}
+
+\titleformat{\section}{\large\bfseries\sffamily}{}{1em}{}
+
+\hypersetup{linkcolor=black}
+
+%%%%% Main TOC 
+\tagstructbegin{tag=TOC}
+\tableofcontents
+\tagstructend % end main toc
+
+\appendixtitleon
+\appendixtitletocon
+
+%%%%% Tables TOC  
+\tagstructbegin{tag=TOC}
+\listoftables
+\tagstructend % end tables toc
+
+%%%%% Figures TOC
+  \tagstructbegin{tag=TOC}
+  \listoffigures
+  \tagstructend % end figures toc
+
+\end{center}
+\clearpage
+\tagstructend % end toc section
+
+%: else
+
+% pdflatex version of ToC
 \clearpage
 
 \begin{center}
@@ -19,3 +56,10 @@
 
 \end{center}
 \clearpage
+
+
+%: endif
+
+
+
+

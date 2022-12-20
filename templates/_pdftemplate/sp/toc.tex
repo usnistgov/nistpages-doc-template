@@ -14,8 +14,12 @@
     \tableofcontents
 	\appendixtitleon
     \appendixtitletocon
+%: if not config.skiptabletoc
     \listoftables
+%: endif
+%: if not config.skipfiguretoc
     \listoffigures
+%: endif
 
 \end{center}
 \clearpage

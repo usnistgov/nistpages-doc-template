@@ -25,7 +25,8 @@ Actions:
   fetch            download updates into sync directory from repository
   compare          compare sync directory contents to local space
   update           copy changes from sync directory into local space
-  
+  export           copy changes from local space into sync directory
+  utils            compare utility scripts
 
 Variables:
 
@@ -37,7 +38,7 @@ Variables:
 Paths:
 
   GIT_SYNC_TEMPLATES   Folder path containing template files.
-  GIT_SYNC_INIT        Folder path containing initialization files.
+  GIT_SYNC_UTILS       Folder path containing utility files.
 
 These variables have default values defined in the script. The defaults can be
 overridden by environment variables. Any environment variables are overridden
@@ -89,9 +90,9 @@ parse_args() {
 	sync_remote=${GIT_SYNC_REMOTE:-template}
 	sync_root=${GIT_SYNC_ROOT:-.}
 	sync_templates=${GIT_SYNC_TEMPLATES:-templates}
-	sync_init=${GIT_SYNC_INIT:-init}
+	sync_utils=${GIT_SYNC_UTILS:-utils}
 
-	#repository to pull ful. must be readable.
+	#repository to pull from. must be readable.
 	repo=${GIT_SYNC_REPO:-https://github.com/usnistgov/nistpages-doc-template.git}
 }
 
@@ -105,9 +106,13 @@ main() {
 	elif [[ $action = "fetch" ]]; then
 		update_sync_directory
 	elif [[ $action = "compare" ]]; then
-		compare_sync_directory
+		compare_templates
+	elif [[ $action = "utils" ]]; then
+		compare_utils
 	elif [[ $action = "update" ]]; then
 		update_from_sync_directory
+	elif [[ $action = "export" ]]; then
+		update_to_sync_directory
 	fi
 }
 
@@ -124,15 +129,32 @@ update_sync_directory() {
 	git -C $sync_directory pull $sync_remote $branch
 }
 
+compare_templates() {
+    compare_sync_directory $sync_templates
+}
+
+compare_utils() {
+	compare_sync_directory $sync_utils
+}
+
 compare_sync_directory() {
+	if [ -z "$1" ]; then
+		echo "Missing sync directory."
+		return 1
+	fi
 	diffs=()
-	for f in $sync_directory/$sync_templates/*
+	for f in $sync_directory/$1/*
 	do
 		echo "Comparing `basename $f` ..."
-		if [[ $verbose ]]; then
-			diff -Naur $f/ $sync_root/`basename $f`/
+		if [ -d $sync_root/`basename $f` ]; then
+			trail='/'
 		else
-			diff -Naqr $f/ $sync_root/`basename $f`/
+			trail=''
+		fi
+		if [[ $verbose ]]; then
+			diff -Naur $f$trail $sync_root/`basename $f`$trail
+		else
+			diff -Naqr $f$trail $sync_root/`basename $f`$trail
 		fi
 		if [[ $? -ne 0 ]]; then
 			diffs+=`basename $f`
@@ -141,7 +163,7 @@ compare_sync_directory() {
 
 	if [ ${#diffs[@]} -ne 0 ]; then
 		echo
-		echo "There were differents in: ${diffs[*]}"
+		echo "There were differences in: ${diffs[*]}"
 		echo
 		echo "Run '$me update' to pull in changes."
 	else
@@ -154,10 +176,24 @@ update_from_sync_directory() {
 	do
 		echo "Synchronizing `basename $f` ..."
 		if [[ $verbose ]]; then
-			rsync -rcv --delete $f/ $sync_root/`basename $f`/
+			rsync -rcv --delete --exclude .git $f/ $sync_root/`basename $f`/
 		else
-			rsync -rc --delete $f/ $sync_root/`basename $f`/
+			rsync -rc --delete --exclude .git $f/ $sync_root/`basename $f`/
 		fi
+	done
+	compare_sync_directory
+}
+
+update_to_sync_directory() {
+	for f in $sync_directory/$sync_templates/*
+	do
+		echo "Synchronizing `basename $f` ..."
+		if [[ $verbose ]]; then
+			rsync -rcv --delete --exclude .git $sync_root/`basename $f`/ $f/ 
+		else
+			rsync -rc --delete --exclude .git $sync_root/`basename $f`/ $f/
+		fi
+		git -C $sync_directory status
 	done
 	compare_sync_directory
 }

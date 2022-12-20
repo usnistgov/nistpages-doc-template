@@ -19,6 +19,11 @@ This template was used in the development of:
 
 This template was originally developed by Justin Richer (@bspk), Bespoke Engineering, to support development of NIST technical publications. It was derived from a LaTeX template developed by Kathryn Miller, Publishing Services Librarian, NIST.
 
+Deployment script (`util/deploy.sh`) originally from https://github.com/X1011/git-directory-deploy
+
+    Copyright Daniel Smith
+    All rights reserved.
+
 ## Contact Information
 
 Andrew Regenscheid (@regenscheid)  

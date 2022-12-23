@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 \tagstructbegin{tag=Sect}
 %: endif
 
@@ -29,6 +29,6 @@
   \VAR{body}
 
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 \tagstructend % end preface
 %: endif

@@ -5,7 +5,7 @@
 %	Last updated: 26-March-2019
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % pdfmanagement is required for tagpdf
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 \RequirePackage{pdfmanagement-testphase}
 \DocumentMetadata
 {
@@ -32,7 +32,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
   \usepackage[flushmargin,bottom]{footmisc} % hang option breaks tagpdf with lualatex
 %: else
   \usepackage[hang,flushmargin, bottom]{footmisc} % footnote format
@@ -53,7 +53,7 @@
 \usepackage[titletoc,title]{appendix}
 \usepackage{multicol}
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
   \usepackage{tagpdf}
   \usepackage{fontspec} %for fonts with lualatex fonts
   \usepackage{polyglossia}
@@ -70,7 +70,7 @@
   \colorbox{black}{\noindent\parbox{\dimexpr\textwidth-2\fboxsep}{\color{white}\ #1}}}
   
  
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
   % Define language and fonts
   % Use the tex-gyre families
   \setdefaultlanguage{english}
@@ -113,7 +113,7 @@
 \makeatother
 
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
   % for section struct tagging
   % From Ulrike Fischer
   %    -Creator of tagpdf- https://github.com/u-fischer/tagpdf
@@ -230,7 +230,7 @@
 % Turn on line numbering
 \usepackage{lineno}
  
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
    % tag page numbers as artifacts
    % use actualtext attribute on line numbers to make them logical blanks
    % actualtext currently only works in span tags, so this doesn't work
@@ -387,7 +387,7 @@ pdfdisplaydoctitle = true
 \captionsetup{labelfont=bf,labelsep=period,font=helvet,figurename=Fig.,justification=raggedright}
 
 
-%: if config.latex_engine != 'lualatex'
+%: if config.use_pdflatex
 \pdfminorversion=7
 %: endif
 
@@ -397,7 +397,7 @@ pdfdisplaydoctitle = true
 \begin{document}
     \RaggedRight % left-justification universal
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
   %lualatex uses pdfvariable instead
   % set pdf version using new commands for Lualatex
   % keep this after begin document  

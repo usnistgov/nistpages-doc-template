@@ -2,7 +2,7 @@
 
 \hypersetup{bookmarksdepth=-1}
 
-%: if config.latex_engine == 'lualatex'  
+%: if not config.use_pdflatex 
 	\tagstructbegin{tag=Sect}
 %: endif
 
@@ -15,7 +15,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 	Automated based on metadata - delete if not applicable
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagpdfparaOff
 	\tagstructbegin{tag=H1}\tagmcbegin{tag=H1}%
 	\LARGE{\sffamily{\textbf{NIST \VAR{config.pubseries}}}}\tagmcend\tagstructend \\ \tagstructbegin{tag=H1}\tagmcbegin{tag=H1}
@@ -31,7 +31,7 @@
 %	Title 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagstructbegin{tag=H2}\tagmcbegin{tag=H2}%
 	\Huge{\sffamily{\textbf{\VAR{config.title}}}}\tagmcend\tagstructend\\
 %: else
@@ -40,7 +40,7 @@
 
 %: if config.subtitle
 
-%: if config.latex_engine == 'lualatex'   
+%: if not config.use_pdflatex  
 	\tagstructbegin{tag=H1}\tagmcbegin{tag=H2}%
 	\Large{\sffamily{\VAR{config.subtitle}}}\tagmcend\tagstructend\\
 %: else
@@ -53,7 +53,7 @@
 
 %: if config.draft_stage
 
-%: if config.latex_engine == 'lualatex' 
+%: if not config.use_pdflatex
 	\tagstructbegin{tag=H2}\tagmcbegin{tag=H2}%
 	\Large{\VAR{config.draft_stage}}\tagmcend\tagstructend
 	\vspace{15pt}
@@ -66,7 +66,7 @@
 
 %: endif
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagpdfparaOn
 %: endif
 
@@ -103,7 +103,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	NIST LOGO - keep as-is
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagstructbegin{tag=Figure,alttext=NIST logo}%
 	\tagmcbegin{tag=Figure}%
 	\includegraphics[width=0.5\linewidth]{NIST-logo.eps}\\
@@ -131,7 +131,7 @@
 %   Publication Series & Number - automated
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagpdfparaOff
 	\tagstructbegin{tag=H1}\tagmcbegin{tag=H1}%
 	\LARGE{\sffamily{\textbf{NIST \VAR{config.pubseries}}}}\tagmcend\tagstructend \\ \tagstructbegin{tag=H1}\tagmcbegin{tag=H1}
@@ -146,7 +146,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	Title 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagstructbegin{tag=H1}\tagmcbegin{tag=H2}%
 	\Huge{\sffamily{\textbf{\VAR{config.title}}}}\tagmcend\tagstructend\\
 %: else
@@ -155,7 +155,7 @@
 
 %: if config.subtitle
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagstructbegin{tag=H1}\tagmcbegin{tag=H2}%
 	\Large{\sffamily{\VAR{config.subtitle}}}\tagmcend\tagstructend\\
 %: else
@@ -166,7 +166,7 @@
 \vfill
 
 %: if config.draft_stage
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagstructbegin{tag=H1}\tagmcbegin{tag=H2}%
 	\Large{\VAR{config.draft_stage}} \tagmcend\tagstructend
 	\vspace{15pt}
@@ -180,7 +180,7 @@
 
 %: endif
 
-%: if config.latex_engine == 'lualatex' 
+%: if not config.use_pdflatex
 	\tagpdfparaOn
 %: endif
 
@@ -224,7 +224,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Department of Commerce LOGO - leave as-is
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagstructbegin{tag=Figure,alttext=Department of Commerce logo}%
 	\tagmcbegin{tag=Figure}%
 	\includegraphics[width=0.18\linewidth]{DoC-logo.eps} 
@@ -250,7 +250,7 @@ National Institute of Standards and Technology\\
 
 \pagestyle{empty}
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagstructend % end cover section
 
 	\tagstructbegin{tag=Sect}
@@ -330,7 +330,7 @@ Nothing in this publication should be taken to contradict the standards and guid
 
 \normalsize{\bfseries{\sffamily{All comments are subject to release under the Freedom of Information Act (FOIA).}}}
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 	\tagstructend %  end authority section
 %: endif
 

@@ -1,17 +1,17 @@
 %%%
-% Section: \VAR{section.name}
+% Section: \VAR{section.name}tex
 % Part:  \VAR{part}
 %%%
 
 % Separate each part in a section with a page break
 \clearpage
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 \tagstructbegin{tag=Sect}
 %: endif
 
 \VAR{body}
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 \tagstructend % end body or appendix section
 %: endif

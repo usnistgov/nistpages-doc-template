@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   References - Unnumbered section
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 \tagstructbegin{tag=Sect}
 %: endif
 
@@ -19,7 +19,7 @@
 
 \VAR{body}
 
-%: if config.latex_engine == 'lualatex'
+%: if not config.use_pdflatex
 \tagstructend % end references section
 %: endif
 

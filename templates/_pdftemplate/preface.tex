@@ -7,6 +7,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
+%: if not config.use_pdflatex
+\tagstructbegin{tag=Sect}
+%: endif
+
 
 \pagestyle{body}
 
@@ -19,5 +23,10 @@
 \titleformat{\subsubsection}{\normalsize\bfseries\sffamily}{}{0em}{}
 \titleformat{\paragraph}{\normalsize\bfseries\sffamily}{}{0em}{}
 
-\VAR{body}
 
+  \VAR{body}
+
+
+%: if not config.use_pdflatex
+\tagstructend % end preface
+%: endif

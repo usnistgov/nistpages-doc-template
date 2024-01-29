@@ -16,3 +16,22 @@ var id = $(el).attr('id');
 })
 
 });
+
+
+
+
+$("a[href*='#']").each((id, el) => {
+ const target = $($(el).prop('hash'));
+
+$(':not(".header-link")', target).each(function(i, a) {
+ var _a = a;
+   console.log($(target).text());
+   $(el).append('<button style="background: #fec" key="' + i + '"> | <b style="color: red">' + $(target).data('section') + ' ' + $(target).text() + '</b> | </button>').on('click', 'button[key="' + i + '"]', function(e) {
+     console.log("Click!", target); target.scrollIntoView()});
+  
+})
+});
+
+
+
+

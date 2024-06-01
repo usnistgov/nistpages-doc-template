@@ -387,6 +387,15 @@ pdfdisplaydoctitle = true
 \DeclareCaptionFont{helvet}{\small\sffamily\selectfont}
 \captionsetup{labelfont=bf,labelsep=period,font=helvet,figurename=Fig.,justification=raggedright}
 
+% Override the normal quote environment to put quotes in grey boxes
+
+\tcbset{colframe=black!10!white,colback=white}
+\usepackage{framed}
+\NewEnvironmentCopy{oldquote}{quote}
+\renewenvironment{quote}
+    {\begin{minipage}{\linewidth}\begin{tcolorbox}[leftrule=2mm,rightrule=0mm,toprule=0mm,bottomrule=0mm,sharp corners]\begin{oldquote}}
+    {\end{oldquote}\end{tcolorbox}\end{minipage}}
+
 
 %: if config.use_pdflatex
 \pdfminorversion=7
